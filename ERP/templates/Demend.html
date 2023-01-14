@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP-специалист</title>
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+</head>
+<body>
+{% for nav in navigation %}
+
+<header>
+    <div class="name">{{ nav.title }}</div>
+    <a href="/"><img class="logo" src="{{ nav.logo_field.url }}"></a>
+</header>
+<main>
+    <div class="body">
+        <div class="navigation" style="height: 1500px">
+            <nav>
+                <ul>
+                    <li><a href="/">Главная страница</a></li>
+                    <li><a href={% url 'demend' %}>Востребованность</a></li>
+                    <li><a href={% url 'geography' %}>География</a></li>
+                    <li><a href={% url 'skills' %}>Навыки</a></li>
+                    <li><a href={% url 'lastVacancy' %}>Последние вакансии</a></li>
+                </ul>
+            </nav>
+        </div>
+        {% endfor %}
+        <div class="home_text" style="margin-top: 5%">
+           {% for demand in demand_info %}
+            <img class="demand_graph_1" src="{{ demand.photo1.url }}"/>
+            <img class="demand_graph_2" src="{{ demand.photo2.url }}"/>
+            <div class="tables">
+            {{ demand.content|safe }}
+            </div>
+        </div>
+    </div>
+{% endfor %}
+            </div>
+
+        </div>
+    </div>
+</main>
+  {% for navigator in navigation %}
+<footer>
+    <div class="foot">{{ navigator.author }}</div>
+</footer>
+{% endfor %}
+</body>
+</html>

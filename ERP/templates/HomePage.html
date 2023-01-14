@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP-специалист</title>
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+</head>
+<body>
+{% for nav in navigation %}
+
+<header>
+    <div class="name">{{ nav.title }}</div>
+    <a href="/"><img class="logo" src="{{ nav.logo_field.url }}"></a>
+</header>
+<main>
+    <div class="body">
+        <div class="navigation" style="height: 1500px">
+            <nav>
+                <ul>
+                    <li><a href="/">Главная страница</a></li>
+                    <li><a href={% url 'demend' %}>Востребованность</a></li>
+                    <li><a href={% url 'geography' %}>География</a></li>
+                    <li><a href={% url 'skills' %}>Навыки</a></li>
+                    <li><a href={% url 'lastVacancy' %}>Последние вакансии</a></li>
+                </ul>
+            </nav>
+        </div>
+        {% endfor %}
+        {% for main in home_info %}
+        <div class="home_text">
+            {{ main.text|safe }}
+            <div class="empty"></div>
+            <img class="home_img" src="{{ main.photo.url }}"/>
+        </div>
+    </div>
+ {% endfor %}
+</main>
+  {% for navigator in navigation %}
+<footer>
+    <div class="foot">{{ navigator.author }}</div>
+</footer>
+{% endfor %}
+</body>
+</html>
